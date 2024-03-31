@@ -1,7 +1,9 @@
-import { useState } from "react";
 // redux
 import { useSelector, useDispatch } from "react-redux";
-import { fetchData } from "../fetch/fetchData";
+import { incrementPage } from "../reducers/stringSlice";
+import { setJobs } from "../reducers/jobsSlice";
+// utils fetch functions
+import { getData } from "../fetch/fetchData";
 
 const Fetch = () => {
   // redux state
@@ -59,8 +61,9 @@ const Fetch = () => {
     return queryParams.join("&");
   }
 
-  const handleFetchData = () => {
-    fetchData(dispatch, createQueryString); // Call fetchData function with dispatch and createQueryString
+  const handleFetchData = async () => {
+    const { jobs, total } = await getData(createQueryString());
+    dispatch(setJobs(jobs));
   };
 
   return (
