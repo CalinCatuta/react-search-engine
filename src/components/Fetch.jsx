@@ -1,9 +1,9 @@
 // redux
 import { useSelector, useDispatch } from "react-redux";
-import { incrementPage } from "../reducers/stringSlice";
-import { setJobs } from "../reducers/jobsSlice";
+import { setJobs, setTotal } from "../reducers/jobsSlice";
 // utils fetch functions
-import { getData } from "../fetch/fetchData";
+import { createSearchString } from "../utils/createSearchString";
+import { getData } from "../utils/fetchData";
 
 const Fetch = () => {
   // redux state
@@ -16,59 +16,23 @@ const Fetch = () => {
   const page = useSelector((state) => state.string.page);
   // jobs
   const jobs = useSelector((state) => state.jobs.jobs);
+  const total = useSelector((state) => state.jobs.total);
 
   // dispatch
   const dispatch = useDispatch();
 
-  function createString(arr) {
-    return arr
-      .map((item) => (Array.isArray(item) ? item.join("+") : item))
-      .join(",");
-  }
-  function createQueryString() {
-    const queryParams = [];
-
-    // Check and include q if not empty
-    if (Array.isArray(q) && q.filter(Boolean).length > 0) {
-      queryParams.push(`q=${createString(q).replace(/,/g, "+")}`);
-    }
-
-    // Check and include city if not empty
-    if (Array.isArray(city) && city.filter(Boolean).length > 0) {
-      queryParams.push(`city=${createString(city).replace(/,/g, "+")}`);
-    }
-
-    // Check and include county if not empty
-    if (Array.isArray(county) && county.filter(Boolean).length > 0) {
-      queryParams.push(`county=${createString(county).replace(/,/g, "+")}`);
-    }
-    // Check and include company if not empty
-    if (Array.isArray(company) && company.filter(Boolean).length > 0) {
-      queryParams.push(`company=${createString(company).replace(/,/g, "+")}`);
-    }
-
-    // Include country
-    queryParams.push(`country=${country}`);
-
-    // Check and include remote if not empty
-    if (Array.isArray(remote) && remote.filter(Boolean).length > 0) {
-      queryParams.push(`remote=${createString(remote).replace(/,/g, "+")}`);
-    }
-
-    // Always include page
-    queryParams.push(`page=${page}`);
-
-    return queryParams.join("&");
-  }
-
   const handleFetchData = async () => {
-    const { jobs, total } = await getData(createQueryString());
+    const { jobs, total } = await getData(
+      createSearchString(q, city, county, country, company, remote, page)
+    );
     dispatch(setJobs(jobs));
+    dispatch(setTotal(total));
   };
 
   return (
     <div>
       <button onClick={handleFetchData}>Click</button>
+      <h2>{total}</h2>
       {jobs.map((job) => (
         <p key={job.id}>{job.job_title}</p>
       ))}
