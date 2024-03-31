@@ -4,6 +4,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   jobs: [],
   total: 0,
+  totalJobs: 0,
+  totalCompany: 0,
 };
 
 // Create slice
@@ -20,11 +22,23 @@ const jobsSlice = createSlice({
     clearTotal: (state) => {
       state.total = 0;
     },
+    setNumberOfJobs(state, action) {
+      state.totalJobs = action.payload;
+    },
+    setNumberOfCompany(state, action) {
+      state.totalCompany = action.payload;
+    },
   },
 });
 
 // Export actions
-export const { setJobs, setTotal } = jobsSlice.actions;
+export const {
+  setJobs,
+  setTotal,
+  clearTotal,
+  setNumberOfJobs,
+  setNumberOfCompany,
+} = jobsSlice.actions;
 
 // Export reducer
 export default jobsSlice.reducer;

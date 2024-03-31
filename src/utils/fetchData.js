@@ -26,12 +26,10 @@ export const getNumberOfJobs = async () => {
 };
 
 // get the number of Company we have in our DB
-export const getNumberOfCompany = async () => {
-  try {
-    const response = await fetch(`${API_URL}logo/`);
-    const data = response.json();
-    return data.companies.length;
-  } catch (error) {
-    console.log(error);
-  }
+export const getNumberOfCompany = () => {
+  return fetch(`https://api.peviitor.ro/v3/logo/`)
+    .then((response) => response.json())
+    .then((data) => {
+      return data.companies.length;
+    });
 };
