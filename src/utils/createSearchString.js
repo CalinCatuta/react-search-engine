@@ -3,6 +3,7 @@ function createString(arr) {
     .map((item) => (Array.isArray(item) ? item.join("+") : item))
     .join(",");
 }
+// take the props when its called and create the string for fetch
 export function createSearchString(
   q,
   city,

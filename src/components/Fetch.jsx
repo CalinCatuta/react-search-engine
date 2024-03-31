@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 // redux
 import { useSelector, useDispatch } from "react-redux";
+// functions to update the jobSlice state.
 import {
   setJobs,
   setTotal,
@@ -9,6 +10,7 @@ import {
 } from "../reducers/jobsSlice";
 // utils fetch functions
 import { createSearchString } from "../utils/createSearchString";
+// functions to fetch the data
 import {
   getData,
   getNumberOfJobs,
@@ -45,7 +47,9 @@ const Fetch = () => {
     numbersInfo();
   }, []);
 
+  // fetch data on click
   const handleFetchData = async () => {
+    // send in props the values from state to create the String for fetch.
     const { jobs, total } = await getData(
       createSearchString(q, city, county, country, company, remote, page)
     );
