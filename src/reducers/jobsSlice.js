@@ -14,7 +14,11 @@ const jobsSlice = createSlice({
   initialState,
   reducers: {
     setJobs(state, action) {
-      state.jobs = [...state.jobs, ...action.payload];
+      // Filter out duplicates before adding new jobs
+      const uniqueJobs = action.payload.filter(
+        (job) => !state.jobs.some((existingJob) => existingJob.id === job.id)
+      );
+      state.jobs = [...state.jobs, ...uniqueJobs];
     },
     setTotal(state, action) {
       state.total = action.payload;
