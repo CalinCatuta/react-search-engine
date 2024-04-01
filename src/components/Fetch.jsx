@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 // functions to update the jobSlice state.
 import {
   setJobs,
+  clearJobs,
   setTotal,
   setNumberOfJobs,
   setNumberOfCompany,
@@ -55,6 +56,7 @@ const Fetch = () => {
 
   // fetch data on click
   const handleFetchData = async () => {
+    dispatch(clearJobs());
     // send in props the values from state to create the String for fetch.
     const { jobs, total } = await getData(
       createSearchString(q, city, county, country, company, remote, page)
@@ -62,6 +64,10 @@ const Fetch = () => {
     dispatch(setJobs(jobs));
     dispatch(setTotal(total));
   };
+  // fetch more data changing the page value
+  function fetchMoreData() {
+    setPage((prevState) => (prevState += 1));
+  }
   // take data from checkbox
   const handleCheckBoxChange = (e, type) => {
     const { value, checked } = e.target;
@@ -142,6 +148,7 @@ const Fetch = () => {
       {jobs.map((job) => (
         <p key={job.id}>{job.job_title}</p>
       ))}
+      <button onClick={fetchMoreData}>Mai multe</button>
     </div>
   );
 };

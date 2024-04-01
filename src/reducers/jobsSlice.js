@@ -20,6 +20,9 @@ const jobsSlice = createSlice({
       );
       state.jobs = [...state.jobs, ...uniqueJobs];
     },
+    clearJobs(state) {
+      state.jobs = [];
+    },
     setTotal(state, action) {
       state.total = action.payload;
     },
@@ -39,6 +42,7 @@ const jobsSlice = createSlice({
 export const {
   setJobs,
   setTotal,
+  clearJobs,
   clearTotal,
   setNumberOfJobs,
   setNumberOfCompany,
