@@ -21,14 +21,17 @@ const Fetch = () => {
   // fields
   const [fields, setFields] = useState({
     orase: [],
+    remote: [],
+    companie: [],
+    experienta: [],
   });
   // string values
   const [q, setQ] = useState([""]);
   const [city, setCity] = useState([""]);
-  const [county, setCounty] = useState([""]);
-  const [country, setCountry] = useState("România");
-  const [company, setCompany] = useState([""]);
   const [remote, setRemote] = useState([""]);
+  const [county] = useState([""]);
+  const [country] = useState("România");
+  const [company, setCompany] = useState([""]);
   const [page, setPage] = useState(1);
   // jobs
   const jobs = useSelector((state) => state.jobs.jobs);
@@ -60,28 +63,38 @@ const Fetch = () => {
     dispatch(setTotal(total));
   };
   // take data from checkbox
-  const handleCheckBoxChange = (e) => {
+  const handleCheckBoxChange = (e, type) => {
     const { value, checked } = e.target;
-    //clone the ucrrent arr
-    const updatedOrase = [...fields.orase];
-    if (checked) {
-      // Add value to arr
-      updatedOrase.push(value);
-    } else {
-      //Remove value from arr
-      const index = updatedOrase.indexOf(value);
 
+    // Clone the current array
+    const updatedArray = [...fields[type]];
+
+    if (checked) {
+      // Add value to array
+      updatedArray.push(value);
+    } else {
+      // Remove value from array
+      const index = updatedArray.indexOf(value);
       if (index !== -1) {
-        updatedOrase.splice(index, 1);
+        updatedArray.splice(index, 1);
       }
     }
-    // Update state with updated arr
+
+    // Update state with updated array
     setFields((prevFields) => ({
       ...prevFields,
-      orase: updatedOrase,
+      [type]: updatedArray,
     }));
-    setCity(updatedOrase);
+    // Update the state for string creation.
+    if (type === "orase") {
+      setCity(updatedArray);
+    } else if (type === "remote") {
+      setRemote(updatedArray);
+    } else if (type === "companie") {
+      setCompany(updatedArray);
+    }
   };
+
   return (
     <div>
       <h3>
@@ -100,29 +113,30 @@ const Fetch = () => {
         value="Bucuresti"
         className="mr-2"
         checked={fields.orase.includes("Bucuresti")}
-        onChange={handleCheckBoxChange}
+        onChange={(e) => handleCheckBoxChange(e, "orase")}
       />
       <label htmlFor="Bucuresti">Bucuresti</label>
       <input
         type="checkbox"
-        id="Iasi"
-        name="orase"
-        value="Iasi"
+        id="AxonSoft"
+        name="companie"
+        value="AxonSoft"
         className="mr-2"
-        checked={fields.orase.includes("Iasi")}
-        onChange={handleCheckBoxChange}
+        checked={fields.companie.includes("AxonSoft")}
+        onChange={(e) => handleCheckBoxChange(e, "companie")}
       />
-      <label htmlFor="Iasi">Iasi</label>
+      <label htmlFor="AxonSoft">AxonSoft</label>
       <input
         type="checkbox"
-        id="Timisoara"
-        name="orase"
-        value="Timisoara"
+        id="Remote"
+        name="remote"
+        value="Remote"
         className="mr-2"
-        checked={fields.orase.includes("Timisoara")}
-        onChange={handleCheckBoxChange}
+        checked={fields.remote.includes("Remote")}
+        onChange={(e) => handleCheckBoxChange(e, "remote")}
       />
-      <label htmlFor="Timisoara">Timisoara</label>
+      <label htmlFor="Remote">Remote</label>
+
       <br />
       <button onClick={handleFetchData}>Click</button>
       <h3>{total}</h3>
