@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 // redux
 import { useSelector, useDispatch } from "react-redux";
 // functions to update the jobSlice state.
@@ -18,15 +18,18 @@ import {
 } from "../utils/fetchData";
 
 const Fetch = () => {
-  // redux state
+  // fields
+  const [fields, setFields] = useState({
+    orase: [],
+  });
   // string values
-  const q = useSelector((state) => state.string.q);
-  const city = useSelector((state) => state.string.city);
-  const county = useSelector((state) => state.string.county);
-  const country = useSelector((state) => state.string.country);
-  const company = useSelector((state) => state.string.company);
-  const remote = useSelector((state) => state.string.remote);
-  const page = useSelector((state) => state.string.page);
+  const [q, setQ] = useState([""]);
+  const [city, setCity] = useState([""]);
+  const [county, setCounty] = useState([""]);
+  const [country, setCountry] = useState("România");
+  const [company, setCompany] = useState([""]);
+  const [remote, setRemote] = useState([""]);
+  const [page, setPage] = useState(1);
   // jobs
   const jobs = useSelector((state) => state.jobs.jobs);
   const total = useSelector((state) => state.jobs.total);
@@ -56,12 +59,71 @@ const Fetch = () => {
     dispatch(setJobs(jobs));
     dispatch(setTotal(total));
   };
+  // take data from checkbox
+  const handleCheckBoxChange = (e) => {
+    const { value, checked } = e.target;
+    //clone the ucrrent arr
+    const updatedOrase = [...fields.orase];
+    if (checked) {
+      // Add value to arr
+      updatedOrase.push(value);
+    } else {
+      //Remove value from arr
+      const index = updatedOrase.indexOf(value);
 
+      if (index !== -1) {
+        updatedOrase.splice(index, 1);
+      }
+    }
+    // Update state with updated arr
+    setFields((prevFields) => ({
+      ...prevFields,
+      orase: updatedOrase,
+    }));
+    setCity(updatedOrase);
+  };
   return (
     <div>
       <h3>
         Avem {totalJobs} de oportunități în România de la {totalCompany} firme
       </h3>
+      <input
+        type="text"
+        value={q}
+        onChange={(e) => setQ([e.target.value])}
+        placeholder="Title"
+      />
+      <input
+        type="checkbox"
+        id="Bucuresti"
+        name="orase"
+        value="Bucuresti"
+        className="mr-2"
+        checked={fields.orase.includes("Bucuresti")}
+        onChange={handleCheckBoxChange}
+      />
+      <label htmlFor="Bucuresti">Bucuresti</label>
+      <input
+        type="checkbox"
+        id="Iasi"
+        name="orase"
+        value="Iasi"
+        className="mr-2"
+        checked={fields.orase.includes("Iasi")}
+        onChange={handleCheckBoxChange}
+      />
+      <label htmlFor="Iasi">Iasi</label>
+      <input
+        type="checkbox"
+        id="Timisoara"
+        name="orase"
+        value="Timisoara"
+        className="mr-2"
+        checked={fields.orase.includes("Timisoara")}
+        onChange={handleCheckBoxChange}
+      />
+      <label htmlFor="Timisoara">Timisoara</label>
+      <br />
       <button onClick={handleFetchData}>Click</button>
       <h3>{total}</h3>
       {jobs.map((job) => (
