@@ -34,6 +34,8 @@ const Fetch = () => {
   const [country] = useState("România");
   const [company, setCompany] = useState([""]);
   const [page, setPage] = useState(1);
+  // prevString
+
   // jobs
   const jobs = useSelector((state) => state.jobs.jobs);
   const total = useSelector((state) => state.jobs.total);
@@ -56,11 +58,11 @@ const Fetch = () => {
 
   // fetch data on click
   const handleFetchData = async () => {
-    dispatch(clearJobs());
     // send in props the values from state to create the String for fetch.
     const { jobs, total } = await getData(
-      createSearchString(q, city, county, country, company, remote, page)
+      createSearchString(q, city, county, country, company, remote, 1)
     );
+    dispatch(clearJobs());
     dispatch(setJobs(jobs));
     dispatch(setTotal(total));
   };
