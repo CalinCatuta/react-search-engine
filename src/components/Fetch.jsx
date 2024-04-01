@@ -65,9 +65,15 @@ const Fetch = () => {
     dispatch(setTotal(total));
   };
   // fetch more data changing the page value
-  function fetchMoreData() {
-    setPage((prevState) => (prevState += 1));
+  async function fetchMoreData() {
+    const nextPage = page + 1;
+    const { jobs } = await getData(
+      createSearchString(q, city, county, country, company, remote, nextPage)
+    );
+    dispatch(setJobs(jobs));
+    setPage(nextPage);
   }
+
   // take data from checkbox
   const handleCheckBoxChange = (e, type) => {
     const { value, checked } = e.target;
@@ -148,7 +154,10 @@ const Fetch = () => {
       {jobs.map((job) => (
         <p key={job.id}>{job.job_title}</p>
       ))}
-      <button onClick={fetchMoreData}>Mai multe</button>
+      {total <= 10 ||
+        (jobs.length === total ? null : (
+          <button onClick={fetchMoreData}>Mai multe</button>
+        ))}
     </div>
   );
 };
