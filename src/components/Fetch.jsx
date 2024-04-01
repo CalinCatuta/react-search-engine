@@ -48,7 +48,7 @@ const Fetch = () => {
       dispatch(setNumberOfCompany(companyNumber));
     };
     numbersInfo();
-  }, []);
+  }, [dispatch]);
 
   // fetch data on click
   const handleFetchData = async () => {
