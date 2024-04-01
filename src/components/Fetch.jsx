@@ -79,7 +79,6 @@ const Fetch = () => {
         updatedArray.splice(index, 1);
       }
     }
-
     // Update state with updated array
     setFields((prevFields) => ({
       ...prevFields,
