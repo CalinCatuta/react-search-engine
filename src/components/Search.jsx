@@ -62,7 +62,7 @@ const Fetch = () => {
     contextSetQ(text);
   };
   // fetch data when states changes values
-  // this make the fetch automated when checkboxes are checked or unchecked.
+  // this make the fetch automated when checkboxes are checked or unchec
   useEffect(() => {
     if (
       q.length === 0 &&
@@ -96,14 +96,14 @@ const Fetch = () => {
       />
       <input
         type="checkbox"
-        id="Bucuresti"
+        id="București"
         name="orase"
-        value="Bucuresti"
+        value="București"
         className="mr-2"
-        checked={fields.orase.includes("Bucuresti")}
+        checked={fields.orase.includes("București")}
         onChange={(e) => handleCheckBoxChange(e, "orase")}
       />
-      <label htmlFor="Bucuresti">Bucuresti</label>
+      <label htmlFor="București">București</label>
       <input
         type="checkbox"
         id="AxonSoft"
