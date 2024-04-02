@@ -57,18 +57,12 @@ const Fetch = () => {
     numbersInfo();
   }, [dispatch]);
 
-  // fetch data on click
-  const handleFetchData = async () => {
+  // Send text from input into state q.
+  const handleUpdateQ = async () => {
     contextSetQ(text);
-    // send in props the values from state to create the String for fetch.
-    const { jobs, total } = await getData(
-      createSearchString(q, city, county, country, company, remote, 1)
-    );
-    dispatch(clearJobs());
-    dispatch(setJobs(jobs));
-    dispatch(setTotal(total));
   };
-  // fetch on remove tags
+  // fetch data when states changes values
+  // this make the fetch automated when checkboxes are checked or unchecked.
   useEffect(() => {
     if (
       q.length === 0 &&
@@ -79,7 +73,9 @@ const Fetch = () => {
       dispatch(clearJobs());
       dispatch(setTotal(0));
     } else {
-      const fetchDataOnTags = async () => {
+      // fetch the data when the stats isn't empty.
+      const handleFetchData = async () => {
+        // send in props the values from state to create the String for fetch.
         const { jobs, total } = await getData(
           createSearchString(q, city, county, country, company, remote, 1)
         );
@@ -87,7 +83,7 @@ const Fetch = () => {
         dispatch(setJobs(jobs));
         dispatch(setTotal(total));
       };
-      fetchDataOnTags();
+      handleFetchData();
     }
   }, [removeTag, dispatch, q, city, remote, company, country, county]);
   return (
@@ -129,7 +125,7 @@ const Fetch = () => {
       />
       <label htmlFor="Remote">Remote</label>
       <br />
-      <button onClick={handleFetchData}>Click</button>
+      <button onClick={handleUpdateQ}>Click</button>
     </div>
   );
 };
