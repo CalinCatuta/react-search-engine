@@ -1,0 +1,5 @@
+Documentatie pentru Object.keys(fields).map((key)): 
+    * Object.keys(fields) iterates over the keys of the fields object, which are "orase", "remote", "company", and "experienta".
+    * For each key, it gets the corresponding array from the fields object.
+    * It then checks if the length of the current array is greater than 0. If it is, it maps over the array to render the tags dynamically.
+    * Inside the map function, it renders the <h3> tag with the current item and sets the key attribute to the item. It also sets an onClick event handler that calls the removeTag function with the specific type (key) and value (item).

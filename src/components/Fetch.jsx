@@ -186,30 +186,19 @@ const Fetch = () => {
       <br />
       <button onClick={handleFetchData}>Click</button>
       <h3>{total}</h3>
-      {city.length > 0 &&
-        city.map((oras) => (
-          <div key={oras}>
-            <h3>{oras}</h3>
-            {/* Call removeTag with type "orase" and the specific value */}
-            <button onClick={() => removeTag("orase", oras)}>X</button>
-          </div>
-        ))}
-      {remote.length > 0 &&
-        remote.map((remote) => (
-          <div key={remote}>
-            <h3>{remote}</h3>
-            {/* Call removeTag with type "orase" and the specific value */}
-            <button onClick={() => removeTag("remote", remote)}>X</button>
-          </div>
-        ))}
-      {company.length > 0 &&
-        company.map((company) => (
-          <div key={company}>
-            <h3>{company}</h3>
-            {/* Call removeTag with type "orase" and the specific value */}
-            <button onClick={() => removeTag("company", company)}>X</button>
-          </div>
-        ))}
+      {Object.keys(fields).map((key) => {
+        const currentArray = fields[key];
+        return (
+          currentArray.length > 0 &&
+          currentArray.map((item) => (
+            <div key={item}>
+              <h3>{item}</h3>
+              {/* Call removeTag with the specific type and value */}
+              <button onClick={() => removeTag(key, item)}>X</button>
+            </div>
+          ))
+        );
+      })}
       {jobs.map((job) => (
         <p key={job.id}>{job.job_title}</p>
       ))}
