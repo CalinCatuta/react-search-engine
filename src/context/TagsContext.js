@@ -88,7 +88,6 @@ export const TagsProvider = ({ children }) => {
         remote,
         country,
         company,
-
         fields,
         handleCheckBoxChange,
         removeTag,

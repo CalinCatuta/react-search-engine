@@ -32,6 +32,7 @@ const Fetch = () => {
   } = useContext(TagsContext);
   // fields
   const [q, setQ] = useState([]);
+  const [text, setText] = useState("");
   const [page, setPage] = useState(1);
 
   // jobs
@@ -56,6 +57,7 @@ const Fetch = () => {
 
   // fetch data on click
   const handleFetchData = async () => {
+    setQ(text);
     // send in props the values from state to create the String for fetch.
     const { jobs, total } = await getData(
       createSearchString(q, city, county, country, company, remote, 1)
@@ -74,6 +76,28 @@ const Fetch = () => {
     setPage(nextPage);
   }
 
+  // fetch on remove tags
+  useEffect(() => {
+    if (
+      q.length === 0 &&
+      city.length === 0 &&
+      remote.length === 0 &&
+      company.length === 0
+    ) {
+      dispatch(clearJobs());
+      dispatch(setTotal(0));
+    } else {
+      const fetchDataOnTags = async () => {
+        const { jobs, total } = await getData(
+          createSearchString(q, city, county, country, company, remote, 1)
+        );
+        dispatch(clearJobs());
+        dispatch(setJobs(jobs));
+        dispatch(setTotal(total));
+      };
+      fetchDataOnTags();
+    }
+  }, [removeTag, dispatch, q, city, remote, company, country, county]);
   return (
     <div>
       <h3>
@@ -82,8 +106,8 @@ const Fetch = () => {
 
       <input
         type="text"
-        value={q}
-        onChange={(e) => setQ([e.target.value])}
+        value={text}
+        onChange={(e) => setText([e.target.value])}
         placeholder="Title"
       />
       <input
