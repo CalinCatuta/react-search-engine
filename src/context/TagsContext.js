@@ -15,7 +15,7 @@ export const TagsProvider = ({ children }) => {
     );
   });
   // string values
-
+  // make them empty if in localStorage they don't exist.
   const [q, setQ] = useState(() => JSON.parse(localStorage.getItem("q")) || []);
   const [city, setCity] = useState(
     () => JSON.parse(localStorage.getItem("city")) || []
