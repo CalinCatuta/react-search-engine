@@ -1,21 +1,33 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 const TagsContext = createContext();
 
 export const TagsProvider = ({ children }) => {
-  const [fields, setFields] = useState({
-    orase: [],
-    remote: [],
-    company: [],
-    experienta: [],
+  const [fields, setFields] = useState(() => {
+    const storedFields = JSON.parse(localStorage.getItem("fields"));
+    return (
+      storedFields || {
+        orase: [],
+        remote: [],
+        company: [],
+        experienta: [],
+      }
+    );
   });
   // string values
-  const [q, setQ] = useState([]);
-  const [city, setCity] = useState([]);
-  const [remote, setRemote] = useState([]);
+
+  const [q, setQ] = useState(() => JSON.parse(localStorage.getItem("q")) || []);
+  const [city, setCity] = useState(
+    () => JSON.parse(localStorage.getItem("city")) || []
+  );
+  const [remote, setRemote] = useState(
+    () => JSON.parse(localStorage.getItem("remote")) || []
+  );
+  const [company, setCompany] = useState(
+    () => JSON.parse(localStorage.getItem("company")) || []
+  );
   const [county] = useState([""]);
   const [country] = useState("România");
-  const [company, setCompany] = useState([]);
 
   // take data from checkbox
   const handleCheckBoxChange = (e, type) => {
@@ -83,6 +95,15 @@ export const TagsProvider = ({ children }) => {
   function contextSetQ(text) {
     setQ(text);
   }
+  // Update fields state from localStorage when component mounts
+  useEffect(() => {
+    setFields({
+      orase: city,
+      remote: remote,
+      company: company,
+      experienta: [],
+    });
+  }, [city, remote, company]);
   return (
     <TagsContext.Provider
       value={{

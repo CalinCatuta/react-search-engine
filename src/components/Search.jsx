@@ -38,6 +38,14 @@ const Fetch = () => {
   // dispatch
   const dispatch = useDispatch();
 
+  // useEffect for localStorage
+  useEffect(() => {
+    localStorage.setItem("q", JSON.stringify(q));
+    localStorage.setItem("city", JSON.stringify(city));
+    localStorage.setItem("remote", JSON.stringify(remote));
+    localStorage.setItem("company", JSON.stringify(company));
+  }, [q, city, remote, company]);
+
   // useEffect to load the number of company and jobs
   useEffect(() => {
     const numbersInfo = async () => {
