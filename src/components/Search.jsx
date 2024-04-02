@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import TagsContext from "../context/TagsContext";
 // redux
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 // functions to update the jobSlice state.
 import {
   setJobs,
@@ -21,6 +21,7 @@ import {
 
 const Fetch = () => {
   const {
+    q,
     city,
     remote,
     county,
@@ -29,17 +30,10 @@ const Fetch = () => {
     fields,
     handleCheckBoxChange,
     removeTag,
+    contextSetQ,
   } = useContext(TagsContext);
   // fields
-  const [q, setQ] = useState([]);
   const [text, setText] = useState("");
-  const [page, setPage] = useState(1);
-
-  // jobs
-  const jobs = useSelector((state) => state.jobs.jobs);
-  const total = useSelector((state) => state.jobs.total);
-  const totalJobs = useSelector((state) => state.jobs.totalJobs);
-  const totalCompany = useSelector((state) => state.jobs.totalCompany);
 
   // dispatch
   const dispatch = useDispatch();
@@ -57,7 +51,7 @@ const Fetch = () => {
 
   // fetch data on click
   const handleFetchData = async () => {
-    setQ(text);
+    contextSetQ(text);
     // send in props the values from state to create the String for fetch.
     const { jobs, total } = await getData(
       createSearchString(q, city, county, country, company, remote, 1)
@@ -66,16 +60,6 @@ const Fetch = () => {
     dispatch(setJobs(jobs));
     dispatch(setTotal(total));
   };
-  // fetch more data changing the page value
-  async function fetchMoreData() {
-    const nextPage = page + 1;
-    const { jobs } = await getData(
-      createSearchString(q, city, county, country, company, remote, nextPage)
-    );
-    dispatch(setJobs(jobs));
-    setPage(nextPage);
-  }
-
   // fetch on remove tags
   useEffect(() => {
     if (
@@ -100,10 +84,6 @@ const Fetch = () => {
   }, [removeTag, dispatch, q, city, remote, company, country, county]);
   return (
     <div>
-      <h3>
-        Avem {totalJobs} de oportunități în România de la {totalCompany} firme
-      </h3>
-
       <input
         type="text"
         value={text}
@@ -140,30 +120,8 @@ const Fetch = () => {
         onChange={(e) => handleCheckBoxChange(e, "remote")}
       />
       <label htmlFor="Remote">Remote</label>
-
       <br />
       <button onClick={handleFetchData}>Click</button>
-      <h3>{total}</h3>
-      {Object.keys(fields).map((key) => {
-        const currentArray = fields[key];
-        return (
-          currentArray.length > 0 &&
-          currentArray.map((item) => (
-            <div key={item}>
-              <h3>{item}</h3>
-              {/* Call removeTag with the specific type and value */}
-              <button onClick={() => removeTag(key, item)}>X</button>
-            </div>
-          ))
-        );
-      })}
-      {jobs.map((job) => (
-        <p key={job.id}>{job.job_title}</p>
-      ))}
-      {total <= 10 ||
-        (jobs.length === total ? null : (
-          <button onClick={fetchMoreData}>Mai multe</button>
-        ))}
     </div>
   );
 };

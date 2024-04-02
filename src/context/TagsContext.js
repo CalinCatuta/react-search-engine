@@ -10,7 +10,7 @@ export const TagsProvider = ({ children }) => {
     experienta: [],
   });
   // string values
-
+  const [q, setQ] = useState([]);
   const [city, setCity] = useState([]);
   const [remote, setRemote] = useState([]);
   const [county] = useState([""]);
@@ -80,9 +80,13 @@ export const TagsProvider = ({ children }) => {
       setCompany(updatedCompany);
     }
   };
+  function contextSetQ(text) {
+    setQ(text);
+  }
   return (
     <TagsContext.Provider
       value={{
+        q,
         city,
         county,
         remote,
@@ -91,6 +95,7 @@ export const TagsProvider = ({ children }) => {
         fields,
         handleCheckBoxChange,
         removeTag,
+        contextSetQ,
       }}
     >
       {children}

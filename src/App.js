@@ -1,13 +1,20 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import "./App.css";
-import Fetch from "./components/Fetch";
+// Pages
+import Landing from "./pages/Landing";
+import Rezultate from "./pages/Rezultate";
 // context
 import { TagsProvider } from "./context/TagsContext";
 function App() {
   return (
     <TagsProvider>
-      <div>
-        <Fetch />
-      </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/rezultate" element={<Rezultate />} />
+        </Routes>
+      </Router>
     </TagsProvider>
   );
 }
