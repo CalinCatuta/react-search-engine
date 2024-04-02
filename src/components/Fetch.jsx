@@ -23,16 +23,16 @@ const Fetch = () => {
   const [fields, setFields] = useState({
     orase: [],
     remote: [],
-    companie: [],
+    company: [],
     experienta: [],
   });
   // string values
-  const [q, setQ] = useState([""]);
-  const [city, setCity] = useState([""]);
-  const [remote, setRemote] = useState([""]);
+  const [q, setQ] = useState([]);
+  const [city, setCity] = useState([]);
+  const [remote, setRemote] = useState([]);
   const [county] = useState([""]);
   const [country] = useState("România");
-  const [company, setCompany] = useState([""]);
+  const [company, setCompany] = useState([]);
   const [page, setPage] = useState(1);
   // prevString
 
@@ -103,8 +103,40 @@ const Fetch = () => {
       setCity(updatedArray);
     } else if (type === "remote") {
       setRemote(updatedArray);
-    } else if (type === "companie") {
+    } else if (type === "company") {
       setCompany(updatedArray);
+    }
+  };
+  // modify removeTag function to accept a parameter indicating the type of field
+  const removeTag = (type, value) => {
+    // Clone the current array based on the type
+    const updatedArray = [...fields[type]];
+
+    // Find the index of the value to be removed
+    const index = updatedArray.indexOf(value);
+
+    // If the value is found in the array, remove it
+    if (index !== -1) {
+      updatedArray.splice(index, 1);
+    }
+
+    // Update state with the updated array
+    setFields((prevFields) => ({
+      ...prevFields,
+      [type]: updatedArray,
+    }));
+    // Update the city array specifically to remove the corresponding text
+    if (type === "orase") {
+      const updatedCity = city.filter((city) => city !== value);
+      setCity(updatedCity);
+    }
+    if (type === "remote") {
+      const updatedRemote = remote.filter((remote) => remote !== value);
+      setRemote(updatedRemote);
+    }
+    if (type === "company") {
+      const updatedCompany = company.filter((company) => company !== value);
+      setCompany(updatedCompany);
     }
   };
 
@@ -113,6 +145,7 @@ const Fetch = () => {
       <h3>
         Avem {totalJobs} de oportunități în România de la {totalCompany} firme
       </h3>
+
       <input
         type="text"
         value={q}
@@ -132,11 +165,11 @@ const Fetch = () => {
       <input
         type="checkbox"
         id="AxonSoft"
-        name="companie"
+        name="company"
         value="AxonSoft"
         className="mr-2"
-        checked={fields.companie.includes("AxonSoft")}
-        onChange={(e) => handleCheckBoxChange(e, "companie")}
+        checked={fields.company.includes("AxonSoft")}
+        onChange={(e) => handleCheckBoxChange(e, "company")}
       />
       <label htmlFor="AxonSoft">AxonSoft</label>
       <input
@@ -153,6 +186,30 @@ const Fetch = () => {
       <br />
       <button onClick={handleFetchData}>Click</button>
       <h3>{total}</h3>
+      {city.length > 0 &&
+        city.map((oras) => (
+          <div key={oras}>
+            <h3>{oras}</h3>
+            {/* Call removeTag with type "orase" and the specific value */}
+            <button onClick={() => removeTag("orase", oras)}>X</button>
+          </div>
+        ))}
+      {remote.length > 0 &&
+        remote.map((remote) => (
+          <div key={remote}>
+            <h3>{remote}</h3>
+            {/* Call removeTag with type "orase" and the specific value */}
+            <button onClick={() => removeTag("remote", remote)}>X</button>
+          </div>
+        ))}
+      {company.length > 0 &&
+        company.map((company) => (
+          <div key={company}>
+            <h3>{company}</h3>
+            {/* Call removeTag with type "orase" and the specific value */}
+            <button onClick={() => removeTag("company", company)}>X</button>
+          </div>
+        ))}
       {jobs.map((job) => (
         <p key={job.id}>{job.job_title}</p>
       ))}
