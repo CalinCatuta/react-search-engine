@@ -1,4 +1,11 @@
+import Search from "../components/Search";
+
 const Landing = () => {
-  return <div>Landing</div>;
+  return (
+    <div>
+      <Search />
+    </div>
+  );
 };
+
 export default Landing;

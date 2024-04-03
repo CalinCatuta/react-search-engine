@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import TagsContext from "../context/TagsContext";
+import { useNavigate, useLocation } from "react-router-dom"; // Import useNavigate and useLocation
 // redux
 import { useDispatch } from "react-redux";
 // functions to update the jobSlice state.
@@ -36,6 +37,8 @@ const Fetch = () => {
   const [text, setText] = useState("");
 
   // dispatch
+  const navigate = useNavigate(); // Get the navigate function
+  const location = useLocation(); // Get the current location
   const dispatch = useDispatch();
 
   // useEffect for localStorage
@@ -59,7 +62,10 @@ const Fetch = () => {
 
   // Send text from input into state q.
   const handleUpdateQ = async () => {
-    contextSetQ(text);
+    await contextSetQ(text);
+    if (location.pathname !== "/rezultate") {
+      navigate("/rezultate"); // Use navigate to redirect to "/rezult"
+    }
   };
   // fetch data when states changes values
   // this make the fetch automated when checkboxes are checked or unchec
@@ -94,36 +100,40 @@ const Fetch = () => {
         onChange={(e) => setText([e.target.value])}
         placeholder="Title"
       />
-      <input
-        type="checkbox"
-        id="București"
-        name="orase"
-        value="București"
-        className="mr-2"
-        checked={fields.orase.includes("București")}
-        onChange={(e) => handleCheckBoxChange(e, "orase")}
-      />
-      <label htmlFor="București">București</label>
-      <input
-        type="checkbox"
-        id="AxonSoft"
-        name="company"
-        value="AxonSoft"
-        className="mr-2"
-        checked={fields.company.includes("AxonSoft")}
-        onChange={(e) => handleCheckBoxChange(e, "company")}
-      />
-      <label htmlFor="AxonSoft">AxonSoft</label>
-      <input
-        type="checkbox"
-        id="Remote"
-        name="remote"
-        value="Remote"
-        className="mr-2"
-        checked={fields.remote.includes("Remote")}
-        onChange={(e) => handleCheckBoxChange(e, "remote")}
-      />
-      <label htmlFor="Remote">Remote</label>
+      {location.pathname === "/rezultate" && ( // Conditionally render the checkboxes
+        <>
+          <input
+            type="checkbox"
+            id="București"
+            name="orase"
+            value="București"
+            className="mr-2"
+            checked={fields.orase.includes("București")}
+            onChange={(e) => handleCheckBoxChange(e, "orase")}
+          />
+          <label htmlFor="București">București</label>
+          <input
+            type="checkbox"
+            id="AxonSoft"
+            name="company"
+            value="AxonSoft"
+            className="mr-2"
+            checked={fields.company.includes("AxonSoft")}
+            onChange={(e) => handleCheckBoxChange(e, "company")}
+          />
+          <label htmlFor="AxonSoft">AxonSoft</label>
+          <input
+            type="checkbox"
+            id="Remote"
+            name="remote"
+            value="Remote"
+            className="mr-2"
+            checked={fields.remote.includes("Remote")}
+            onChange={(e) => handleCheckBoxChange(e, "remote")}
+          />
+          <label htmlFor="Remote">Remote</label>
+        </>
+      )}
       <br />
       <button onClick={handleUpdateQ}>Click</button>
     </div>
