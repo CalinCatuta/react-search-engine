@@ -6,6 +6,7 @@ const initialState = {
   total: 0,
   totalJobs: 0,
   totalCompany: 0,
+  loading: true,
 };
 
 // Create slice
@@ -29,6 +30,9 @@ const jobsSlice = createSlice({
     clearTotal: (state) => {
       state.total = 0;
     },
+    setLoading: (state) => {
+      state.loading = true;
+    },
     setNumberOfJobs(state, action) {
       state.totalJobs = action.payload;
     },
@@ -44,6 +48,7 @@ export const {
   setTotal,
   clearJobs,
   clearTotal,
+  setLoading,
   setNumberOfJobs,
   setNumberOfCompany,
 } = jobsSlice.actions;

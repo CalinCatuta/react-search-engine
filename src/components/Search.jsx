@@ -10,6 +10,7 @@ import {
   setTotal,
   setNumberOfJobs,
   setNumberOfCompany,
+  setLoading,
 } from "../reducers/jobsSlice";
 // utils fetch functions
 import { createSearchString } from "../utils/createSearchString";
@@ -90,6 +91,7 @@ const Fetch = () => {
         dispatch(setTotal(total));
       };
       handleFetchData();
+      dispatch(setLoading());
     }
   }, [removeTag, dispatch, q, city, remote, company, country, county]);
   return (

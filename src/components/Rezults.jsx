@@ -18,6 +18,7 @@ const Rezults = () => {
   // jobs
   const jobs = useSelector((state) => state.jobs.jobs);
   const total = useSelector((state) => state.jobs.total);
+  const loading = useSelector((state) => state.jobs.loading);
   //state
   const [page, setPage] = useState(1);
   // fetch more data changing the page value
@@ -32,7 +33,7 @@ const Rezults = () => {
 
   return (
     <div>
-      <h3>{total}</h3>
+      {loading && <h3>{total}</h3>}
       {Object.keys(fields).map((key) => {
         const currentArray = fields[key];
         return (
