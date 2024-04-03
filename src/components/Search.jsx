@@ -121,6 +121,16 @@ const Fetch = () => {
           <label htmlFor="București">București</label>
           <input
             type="checkbox"
+            id="Iasi"
+            name="orase"
+            value="Iasi"
+            className="mr-2"
+            checked={fields.orase.includes("Iasi")}
+            onChange={(e) => handleCheckBoxChange(e, "orase")}
+          />
+          <label htmlFor="Iasi">Iasi</label>
+          <input
+            type="checkbox"
             id="AxonSoft"
             name="company"
             value="AxonSoft"

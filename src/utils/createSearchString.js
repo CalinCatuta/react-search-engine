@@ -1,6 +1,7 @@
-function createString(arr) {
+function createString(arr, isCity = false) {
   return arr
     .map((item) => (Array.isArray(item) ? item.join("+") : item))
+    .map((item) => (isCity ? item + "~" : item)) // Append ~ only for city
     .join(",");
 }
 // take the props when its called and create the string for fetch
@@ -22,7 +23,7 @@ export function createSearchString(
 
   // Check and include city if not empty
   if (Array.isArray(city) && city.filter(Boolean).length > 0) {
-    queryParams.push(`city=${createString(city).replace(/,/g, "+")}`);
+    queryParams.push(`city=${createString(city, true).replace(/,/g, "+")}`);
   }
 
   // Check and include county if not empty

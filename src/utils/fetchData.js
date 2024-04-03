@@ -5,6 +5,7 @@ export const getData = async (createQueryString) => {
   try {
     const response = await fetch(`${API_URL}?${createQueryString}`);
     const data = await response.json();
+    console.log(createQueryString);
     return {
       jobs: data.response.docs,
       total: data.response.numFound,
