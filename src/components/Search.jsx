@@ -36,6 +36,7 @@ const Fetch = () => {
   } = useContext(TagsContext);
   // fields
   const [text, setText] = useState("");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true); // State to manage button disabled status
 
   // dispatch
   const navigate = useNavigate(); // Get the navigate function
@@ -60,6 +61,10 @@ const Fetch = () => {
     };
     numbersInfo();
   }, [dispatch]);
+  // Enable or disable button based on the input text
+  useEffect(() => {
+    setIsButtonDisabled(String(text).trim() === "");
+  }, [text]);
 
   // Send text from input into state q.
   const handleUpdateQ = async () => {
@@ -100,7 +105,7 @@ const Fetch = () => {
         type="text"
         value={text}
         onChange={(e) => setText([e.target.value])}
-        placeholder="Title"
+        placeholder="Titlu jobului"
       />
       {location.pathname === "/rezultate" && ( // Conditionally render the checkboxes
         <>
@@ -137,7 +142,9 @@ const Fetch = () => {
         </>
       )}
       <br />
-      <button onClick={handleUpdateQ}>Click</button>
+      <button onClick={handleUpdateQ} disabled={isButtonDisabled}>
+        Click
+      </button>
     </div>
   );
 };
