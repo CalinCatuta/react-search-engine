@@ -1,6 +1,9 @@
 import { useEffect, useState, useContext } from "react";
+
 import TagsContext from "../context/TagsContext";
 import { useNavigate, useLocation } from "react-router-dom"; // Import useNavigate and useLocation
+// components
+import DropDown from "./DropDown";
 // redux
 import { useDispatch } from "react-redux";
 // functions to update the jobSlice state.
@@ -22,18 +25,8 @@ import {
 } from "../utils/fetchData";
 
 const Fetch = () => {
-  const {
-    q,
-    city,
-    remote,
-    county,
-    country,
-    company,
-    fields,
-    handleCheckBoxChange,
-    removeTag,
-    contextSetQ,
-  } = useContext(TagsContext);
+  const { q, city, remote, county, country, company, removeTag, contextSetQ } =
+    useContext(TagsContext);
   // fields
   const [text, setText] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true); // State to manage button disabled status
@@ -109,46 +102,7 @@ const Fetch = () => {
       />
       {location.pathname === "/rezultate" && ( // Conditionally render the checkboxes
         <>
-          <input
-            type="checkbox"
-            id="București"
-            name="orase"
-            value="București"
-            className="mr-2"
-            checked={fields.orase.includes("București")}
-            onChange={(e) => handleCheckBoxChange(e, "orase")}
-          />
-          <label htmlFor="București">București</label>
-          <input
-            type="checkbox"
-            id="Iasi"
-            name="orase"
-            value="Iasi"
-            className="mr-2"
-            checked={fields.orase.includes("Iasi")}
-            onChange={(e) => handleCheckBoxChange(e, "orase")}
-          />
-          <label htmlFor="Iasi">Iasi</label>
-          <input
-            type="checkbox"
-            id="AxonSoft"
-            name="company"
-            value="AxonSoft"
-            className="mr-2"
-            checked={fields.company.includes("AxonSoft")}
-            onChange={(e) => handleCheckBoxChange(e, "company")}
-          />
-          <label htmlFor="AxonSoft">AxonSoft</label>
-          <input
-            type="checkbox"
-            id="Remote"
-            name="remote"
-            value="Remote"
-            className="mr-2"
-            checked={fields.remote.includes("Remote")}
-            onChange={(e) => handleCheckBoxChange(e, "remote")}
-          />
-          <label htmlFor="Remote">Remote</label>
+          <DropDown />
         </>
       )}
       <br />
