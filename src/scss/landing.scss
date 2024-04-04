@@ -5,7 +5,11 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
+  width: auto;
+  max-width: 1600px;
+  margin-inline: auto;
 }
+
 a {
   text-decoration: none;
   color: black;
@@ -13,11 +17,16 @@ a {
 .navbar {
   border-bottom: 1px solid #ccdde2;
   img {
-    padding: 6px;
+    padding: 10px;
   }
 }
 main {
   font-family: PoppinsRegular;
+  width: 927.69px;
+  height: 361.99px;
+  margin-inline: auto;
+  padding: 160px 0px;
+
   h1 {
     color: colors.$text_orange;
     font-size: 60px;
@@ -30,12 +39,17 @@ main {
     font-weight: 400;
     line-height: 25px;
     text-align: left;
+    color: #4b4646;
 
     span {
       font-size: 18px;
       font-weight: 700;
       line-height: 25px;
       text-align: left;
+      color: rgb(24, 24, 24);
     }
+  }
+  .content {
+    display: flex;
   }
 }

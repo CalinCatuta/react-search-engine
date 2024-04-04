@@ -2,6 +2,8 @@
 import logo from "../assets/svg/logo.svg";
 //scss
 import "../scss/landing.scss";
+// racheta
+import racheta from "../assets/svg/racheta.svg";
 // components
 import Search from "../components/Search";
 import Footer from "../components/Footer";
@@ -18,11 +20,16 @@ const Landing = () => {
         </a>
       </nav>
       <main>
-        <h1>Locul de munca visat, la un clic distanta </h1>
-        <h4>
-          Peste <strong>{totalJobs}</strong> de locuri de munca din România
-          actualizate zilnic
-        </h4>
+        <div className="content">
+          <div className="text">
+            <h1>Locul de munca visat, la un clic distanta </h1>
+            <h4>
+              Peste <span>{totalJobs}</span> de locuri de munca din România
+              actualizate zilnic
+            </h4>
+          </div>
+          <img src={racheta} alt="Racheta" />
+        </div>
         <Search />
       </main>
       <Footer />

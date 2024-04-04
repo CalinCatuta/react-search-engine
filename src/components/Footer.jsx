@@ -3,7 +3,8 @@ import linkedin from "../assets/svg/linkedin_icon.svg";
 import discord from "../assets/svg/discord_icon.svg";
 import github from "../assets/svg/github_icon.svg";
 import jitsi from "../assets/svg/jitsi_icon.svg";
-
+//scss
+import "../scss/footer.scss";
 const Footer = () => {
   const year = new Date().getFullYear();
   return (
@@ -11,69 +12,66 @@ const Footer = () => {
       <section className="links">
         <section className="company">
           <h3 className="title">Organizație</h3>
-          <nav>
-            <ul>
-              <li>
-                <a
-                  href="https://www.oportunitatisicariere.ro/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Despre noi
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.oportunitatisicariere.ro/viziune"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Viziune
-                </a>
-              </li>
-            </ul>
-          </nav>
+
+          <ul>
+            <li>
+              <a
+                href="https://www.oportunitatisicariere.ro/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Despre noi
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.oportunitatisicariere.ro/viziune"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Viziune
+              </a>
+            </li>
+          </ul>
         </section>
         <section className="info">
           <h3 className="title">Informații suplimentare</h3>
-          <nav>
-            <ul>
-              <li>
-                <a
-                  href="https://legal.peviitor.ro/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Condiții de utilizare
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://legal.peviitor.ro/confidentialitate"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Politica de confidențialitate
-                </a>
-              </li>
-            </ul>
-          </nav>
+
+          <ul>
+            <li>
+              <a
+                href="https://legal.peviitor.ro/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Condiții de utilizare
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://legal.peviitor.ro/confidentialitate"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Politica de confidențialitate
+              </a>
+            </li>
+          </ul>
         </section>
         <section className="company">
           <h3 className="title">Implica-te!</h3>
-          <nav>
-            <ul>
-              <li>
-                <a
-                  href="https://www.oportunitatisicariere.ro/voluntari"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Alătură-te cauzei noastre
-                </a>
-              </li>
-            </ul>
-          </nav>
+
+          <ul>
+            <li>
+              <a
+                href="https://www.oportunitatisicariere.ro/voluntari"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Alătură-te cauzei noastre
+              </a>
+            </li>
+          </ul>
         </section>
         <section className="social-media">
           <h3 className="title hide-title">Social Media</h3>

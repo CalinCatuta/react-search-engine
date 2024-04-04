@@ -1,0 +1,28 @@
+.footer {
+  .links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .social-media {
+    display: flex;
+  }
+  h3 {
+    color: #4b4646;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 25px;
+    text-align: left;
+  }
+  .all-rights-reserved {
+    margin-top: 20px;
+  }
+  li {
+    padding: 10px 0px;
+  }
+  .social-links {
+    a {
+      margin-inline: 10px;
+    }
+  }
+}
