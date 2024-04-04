@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 import TagsContext from "../context/TagsContext";
 
-const DropDown = () => {
+const FiltreGrup = () => {
   const { fields, handleCheckBoxChange } = useContext(TagsContext);
   return (
     <div>
@@ -49,4 +49,4 @@ const DropDown = () => {
     </div>
   );
 };
-export default DropDown;
+export default FiltreGrup;

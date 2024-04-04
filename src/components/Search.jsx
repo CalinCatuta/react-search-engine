@@ -3,7 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import TagsContext from "../context/TagsContext";
 import { useNavigate, useLocation } from "react-router-dom"; // Import useNavigate and useLocation
 // components
-import DropDown from "./DropDown";
+import FiltreGrup from "./FiltreGrup";
 // redux
 import { useDispatch } from "react-redux";
 // functions to update the jobSlice state.
@@ -102,7 +102,7 @@ const Fetch = () => {
       />
       {location.pathname === "/rezultate" && ( // Conditionally render the checkboxes
         <>
-          <DropDown />
+          <FiltreGrup />
         </>
       )}
       <br />
