@@ -2,11 +2,7 @@
 
 @keyframes btn_bg_color_change {
   from {
-    background-color: colors.$background_orange;
-  }
-
-  to {
-    background-color: colors.$background_orange_dark;
+    background-color: colors.$background_green;
   }
 }
 
@@ -19,10 +15,10 @@
   font-weight: 700;
 }
 
-.btn-yellow {
+.btn {
   all: unset;
   padding: 12px;
-  background-color: colors.$background_orange;
+  background-color: colors.$background_green;
   border-radius: 8px;
   color: colors.$white;
   text-align: center;
@@ -33,11 +29,6 @@
   transition: all 100ms;
 
   cursor: pointer;
-
-  &:hover {
-    animation: btn_bg_color_change 100ms ease-in-out;
-    background-color: colors.$background_orange_dark;
-  }
 }
 
 .input-serp {

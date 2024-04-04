@@ -1,5 +1,7 @@
 // images
 import logo from "../assets/svg/logo.svg";
+//scss
+import "../scss/landing.scss";
 // components
 import Search from "../components/Search";
 import Footer from "../components/Footer";
@@ -18,7 +20,8 @@ const Landing = () => {
       <main>
         <h1>Locul de munca visat, la un clic distanta </h1>
         <h4>
-          Peste {totalJobs} de locuri de munca din România actualizate zilnic
+          Peste <strong>{totalJobs}</strong> de locuri de munca din România
+          actualizate zilnic
         </h4>
         <Search />
       </main>
