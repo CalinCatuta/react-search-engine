@@ -22,9 +22,9 @@ const Landing = () => {
       <main>
         <div className="content">
           <div className="text">
-            <h1>Locul de munca visat, la un clic distanta </h1>
+            <h1>Locul de muncă visat, la un clic distanță </h1>
             <h4>
-              Peste <span>{totalJobs}</span> de locuri de munca din România
+              Peste <span>{totalJobs}</span> de locuri de muncă din România
               actualizate zilnic
             </h4>
           </div>

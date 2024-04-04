@@ -1,6 +1,8 @@
 // svg
 import noLogo from "../assets/svg/no-logo.svg";
 import mapPin from "../assets/svg/map_pin.svg";
+// scss
+import "../scss/job.scss";
 // react
 import React from "react";
 const Job = ({
@@ -80,7 +82,9 @@ const Job = ({
           {checkLocation(jobCity)}
         </p>
       )}
-      <a href={job_link}>Catre site</a>
+      <a className="btn" href={job_link}>
+        Catre site
+      </a>
     </div>
   );
 };

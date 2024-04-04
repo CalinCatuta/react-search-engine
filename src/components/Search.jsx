@@ -134,7 +134,7 @@ const Fetch = () => {
             ""
           )}
           <button type="submite" disabled={isButtonDisabled}>
-            Cauta
+            Caută
           </button>
         </form>
       </div>

@@ -1,9 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
+// scss
+import "../scss/rezults.scss";
 // components
 import Job from "./Job";
 import FaraRezultate from "./FaraRezultate";
 // icons
-import scrollUp from "../assets/images/scroll-up.png";
+import scrollUp from "../assets/svg/scroll-up.svg";
 // context
 import TagsContext from "../context/TagsContext";
 // redux
@@ -35,6 +37,18 @@ const Rezults = () => {
     dispatch(setJobs(jobs));
     setPage(nextPage);
   }
+  // scrollUp Button
+  const [isVisible, setIsVisible] = useState(false);
+
+  const checkScrollHeight = () => {
+    setIsVisible(window.pageYOffset > 500);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", checkScrollHeight);
+
+    return () => window.removeEventListener("scroll", checkScrollHeight);
+  }, []);
 
   return (
     <div className="rezults-container">
@@ -49,7 +63,7 @@ const Rezults = () => {
           return (
             currentArray.length > 0 &&
             currentArray.map((item) => (
-              <div key={item}>
+              <div key={item} className="tags">
                 <h3>{item}</h3>
                 {/* Call removeTag with the specific type and value */}
                 <button onClick={() => removeTag(key, item)}>X</button>
@@ -87,7 +101,11 @@ const Rezults = () => {
             Incarca mai multe
           </button>
         ))}
-      <button className="scrol-up">
+
+      <button
+        className={`scrol-up ${isVisible && "is-visible"}`}
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      >
         <img src={scrollUp} alt="scroll-up" />
       </button>
     </div>
