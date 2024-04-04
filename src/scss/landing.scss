@@ -22,7 +22,8 @@ a {
 }
 main {
   font-family: PoppinsRegular;
-  margin: 180px 0px;
+  margin-top: 80px;
+  margin-bottom: 260px;
   h1 {
     color: colors.$text_orange;
     font-size: 60px;
@@ -57,6 +58,7 @@ main {
   }
 
   main {
+    margin-bottom: 140px;
     h1 {
       font-size: 48px;
       font-weight: 600;
@@ -67,6 +69,7 @@ main {
       width: 80%;
       img {
         width: 400px;
+        margin-left: 100px;
       }
     }
   }
@@ -74,12 +77,20 @@ main {
 
 @media (max-width: 800px) {
   main {
-    margin: 120px 0px;
+    margin: 50px 0px;
+    margin-bottom: 230px;
     .content {
       width: 350px;
+      img {
+        width: 300px;
+        margin-left: 0px;
+        position: absolute;
+        top: 560px;
+        z-index: -10;
+      }
     }
   }
   .landing {
-    padding: 0 2rem;
+    padding: 0 1.5rem;
   }
 }

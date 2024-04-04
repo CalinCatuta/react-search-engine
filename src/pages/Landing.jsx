@@ -13,7 +13,7 @@ const Landing = () => {
   // redux state
   const { totalJobs } = useSelector((state) => state.jobs);
   return (
-    <div>
+    <div className="landing">
       <nav className="navbar">
         <a href="/" className="logo">
           <img src={logo} alt="peviitor" />
