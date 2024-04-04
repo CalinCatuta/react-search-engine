@@ -67,9 +67,9 @@ const Job = ({
         dangerouslySetInnerHTML={{ __html: job_title }}
       ></h2>
       {jobRemote &&
-      jobRemote.toLowerCase() !== "nespecificat" &&
-      jobRemote.toLowerCase() !== "on-site" &&
-      jobRemote.toLowerCase() !== "on site" ? (
+      jobRemote !== "nespecificat" &&
+      jobRemote !== "on-site" &&
+      jobRemote !== "on site" ? (
         <p className="location">
           <img src={mapPin} alt="map pin" className="icon" />
           {checkRemote(jobRemote)}
