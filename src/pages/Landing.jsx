@@ -1,16 +1,28 @@
+// images
+import logo from "../assets/svg/logo.svg";
 // components
 import Search from "../components/Search";
+import Footer from "../components/Footer";
 // redux
 import { useSelector } from "react-redux";
-// state
 const Landing = () => {
-  const { totalJobs, totalCompany } = useSelector((state) => state.jobs);
+  // redux state
+  const { totalJobs } = useSelector((state) => state.jobs);
   return (
     <div>
-      <h3>
-        Avem {totalJobs} de oportunități în România de la {totalCompany} firme
-      </h3>
-      <Search />
+      <nav>
+        <a href="/" className="logo">
+          <img src={logo} alt="peviitor" />
+        </a>
+      </nav>
+      <main>
+        <h1>Locul de munca visat, la un clic distanta </h1>
+        <h4>
+          Peste {totalJobs} de locuri de munca din România actualizate zilnic
+        </h4>
+        <Search />
+      </main>
+      <Footer />
     </div>
   );
 };

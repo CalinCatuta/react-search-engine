@@ -1,5 +1,8 @@
-import { useEffect, useState, useContext } from "react";
+// svg
+import magnifyGlass from "../assets/svg/magniy_glass_icon.svg";
+import logo from "../assets/svg/logo.svg";
 
+import { useEffect, useState, useContext } from "react";
 import TagsContext from "../context/TagsContext";
 import { useNavigate, useLocation } from "react-router-dom"; // Import useNavigate and useLocation
 // components
@@ -92,14 +95,41 @@ const Fetch = () => {
       dispatch(setLoading());
     }
   }, [removeTag, dispatch, q, city, remote, company, country, county]);
+  // remove text from input on X button.
+  function handleClearX() {
+    setText("");
+  }
   return (
     <div>
-      <input
-        type="text"
-        value={text}
-        onChange={(e) => setText([e.target.value])}
-        placeholder="Titlu jobului"
-      />
+      <div className="input-container">
+        {location.pathname === "/rezultate" && (
+          <a href="/" className="logo">
+            <img src={logo} alt="peviitor" />
+          </a>
+        )}
+        <img src={magnifyGlass} alt="magnify glass icon" />
+        <input
+          autoFocus
+          type="text"
+          value={text}
+          onChange={(e) => setText([e.target.value])}
+          placeholder="Ce doriți să lucrați?"
+        />
+        {q && (
+          <span className="clear" onClick={handleClearX}>
+            <svg
+              focusable="false"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="15px"
+              height="15px"
+            >
+              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+            </svg>
+          </span>
+        )}
+      </div>
+
       {location.pathname === "/rezultate" && ( // Conditionally render the checkboxes
         <>
           <FiltreGrup />
@@ -107,7 +137,7 @@ const Fetch = () => {
       )}
       <br />
       <button onClick={handleUpdateQ} disabled={isButtonDisabled}>
-        Click
+        Cauta
       </button>
     </div>
   );

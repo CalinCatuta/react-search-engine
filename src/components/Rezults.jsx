@@ -1,4 +1,9 @@
 import { useContext, useState } from "react";
+// components
+import Job from "./Job";
+import FaraRezultate from "./FaraRezultate";
+// icons
+import scrollUp from "../assets/images/scroll-up.png";
 // context
 import TagsContext from "../context/TagsContext";
 // redux
@@ -32,28 +37,59 @@ const Rezults = () => {
   }
 
   return (
-    <div>
-      {loading && <h3>{total}</h3>}
-      {Object.keys(fields).map((key) => {
-        const currentArray = fields[key];
-        return (
-          currentArray.length > 0 &&
-          currentArray.map((item) => (
-            <div key={item}>
-              <h3>{item}</h3>
-              {/* Call removeTag with the specific type and value */}
-              <button onClick={() => removeTag(key, item)}>X</button>
-            </div>
-          ))
-        );
-      })}
-      {jobs.map((job) => (
-        <p key={job.id}>{job.job_title}</p>
-      ))}
+    <div className="rezults-container">
+      {loading && (
+        <h3 className="total-rezultate">
+          {total} {total !== 0 ? "de" : ""} rezultate
+        </h3>
+      )}
+      <div className="taguri-container">
+        {Object.keys(fields).map((key) => {
+          const currentArray = fields[key];
+          return (
+            currentArray.length > 0 &&
+            currentArray.map((item) => (
+              <div key={item}>
+                <h3>{item}</h3>
+                {/* Call removeTag with the specific type and value */}
+                <button onClick={() => removeTag(key, item)}>X</button>
+              </div>
+            ))
+          );
+        })}
+      </div>
+      {jobs.length > 0 ? (
+        <div className="cards-containter">
+          {jobs.map(
+            (
+              { city, company, country, county, job_link, job_title, remote },
+              idx
+            ) => (
+              <Job
+                key={idx}
+                city={city}
+                company={company}
+                country={country}
+                county={county}
+                job_link={job_link}
+                job_title={job_title}
+                remote={remote}
+              />
+            )
+          )}
+        </div>
+      ) : (
+        <FaraRezultate />
+      )}
       {total <= 10 ||
         (jobs.length === total ? null : (
-          <button onClick={fetchMoreData}>Mai multe</button>
+          <button className="load-more" onClick={fetchMoreData}>
+            Incarca mai multe
+          </button>
         ))}
+      <button className="scrol-up">
+        <img src={scrollUp} alt="scroll-up" />
+      </button>
     </div>
   );
 };
