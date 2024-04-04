@@ -1,14 +1,14 @@
 @use "./colors";
 
 .input-container {
-  width: 900px;
-  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 20px;
 
   .lupa {
     position: relative;
     left: 40px;
-    top: 8px;
   }
   input {
     padding-left: 50px;
@@ -41,7 +41,6 @@
 }
 @media (max-width: 1200px) {
   .input-container {
-    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -65,7 +64,9 @@
 }
 @media (max-width: 800px) {
   .input-container {
-    width: 320px;
+    button {
+      display: none;
+    }
     .lupa {
       left: -116px;
       top: 40px;
