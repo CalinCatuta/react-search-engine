@@ -12,7 +12,7 @@ const Landing = () => {
   const { totalJobs } = useSelector((state) => state.jobs);
   return (
     <div>
-      <nav>
+      <nav className="navbar">
         <a href="/" className="logo">
           <img src={logo} alt="peviitor" />
         </a>

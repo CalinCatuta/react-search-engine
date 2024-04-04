@@ -10,7 +10,12 @@ a {
   text-decoration: none;
   color: black;
 }
-
+.navbar {
+  border-bottom: 1px solid #ccdde2;
+  img {
+    padding: 6px;
+  }
+}
 main {
   font-family: PoppinsRegular;
   h1 {

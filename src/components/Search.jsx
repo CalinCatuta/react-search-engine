@@ -1,6 +1,8 @@
 // svg
 import magnifyGlass from "../assets/svg/magniy_glass_icon.svg";
 import logo from "../assets/svg/logo.svg";
+// scss
+import "../scss/search.scss";
 
 import { useEffect, useState, useContext } from "react";
 import TagsContext from "../context/TagsContext";
@@ -107,7 +109,7 @@ const Fetch = () => {
             <img src={logo} alt="peviitor" />
           </a>
         )}
-        <img src={magnifyGlass} alt="magnify glass icon" />
+        <img className="lupa" src={magnifyGlass} alt="magnify-glass" />
         <input
           autoFocus
           type="text"
@@ -115,7 +117,7 @@ const Fetch = () => {
           onChange={(e) => setText([e.target.value])}
           placeholder="Ce doriți să lucrați?"
         />
-        {q && (
+        {text.length !== 0 ? (
           <span className="clear" onClick={handleClearX}>
             <svg
               focusable="false"
@@ -127,18 +129,18 @@ const Fetch = () => {
               <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
             </svg>
           </span>
+        ) : (
+          ""
         )}
+        <button onClick={handleUpdateQ} disabled={isButtonDisabled}>
+          Cauta
+        </button>
       </div>
-
       {location.pathname === "/rezultate" && ( // Conditionally render the checkboxes
         <>
           <FiltreGrup />
         </>
       )}
-      <br />
-      <button onClick={handleUpdateQ} disabled={isButtonDisabled}>
-        Cauta
-      </button>
     </div>
   );
 };

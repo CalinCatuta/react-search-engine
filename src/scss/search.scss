@@ -1,0 +1,37 @@
+@use "./colors";
+
+.input-container {
+  .lupa {
+    position: relative;
+    left: 40px;
+    top: 8px;
+  }
+  input {
+    padding-left: 50px;
+    border: 1px solid #89969c;
+    border-radius: 40px;
+    width: 520px;
+    height: 54px;
+  }
+  .clear {
+    position: relative;
+    left: -40px;
+    top: 2px;
+  }
+  button {
+    margin-left: 6px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    width: 122px;
+    height: 54px;
+    padding: 14px 40px;
+    border-radius: 30px;
+    border: none;
+    background-color: colors.$background_green;
+    transition: all 0.5s ease-out;
+    &:hover {
+      box-shadow: 0px 5px 5px 0px #00000040 inset;
+    }
+  }
+}
