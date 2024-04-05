@@ -66,7 +66,7 @@ const Fetch = () => {
 
   // Send text from input into state q.
   const handleUpdateQ = async () => {
-    await contextSetQ(text);
+    await contextSetQ([text]);
     if (location.pathname !== "/rezultate") {
       navigate("/rezultate"); // Use navigate to redirect to "/rezult"
     }
@@ -114,7 +114,7 @@ const Fetch = () => {
           <input
             type="text"
             value={text}
-            onChange={(e) => setText([e.target.value])}
+            onChange={(e) => setText(e.target.value)}
             placeholder="Ce doriți să lucrați?"
           />
           {text.length !== 0 ? (
