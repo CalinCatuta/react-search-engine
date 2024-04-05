@@ -83,7 +83,7 @@ const Job = ({
         </p>
       )}
       <a className="btn" href={job_link}>
-        Catre site
+        Către site
       </a>
     </div>
   );

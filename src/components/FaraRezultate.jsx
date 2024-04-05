@@ -8,9 +8,9 @@ const FaraRezultate = () => {
       <div className="text">
         <h1>
           Ups! <br />
-          Cautarea nu are <br /> rezultat
+          Căutarea nu are <br /> rezultat
         </h1>
-        <h4>Elimina din filtre sau incepe o cautare noua</h4>
+        <h4>Elimină din filtre sau începe o căutare nouă</h4>
       </div>
       <img src={strut} alt="not-found" />
     </div>
