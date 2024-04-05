@@ -39,6 +39,7 @@
     }
   }
 }
+
 @media (max-width: 1200px) {
   .input-container {
     display: flex;
@@ -62,6 +63,14 @@
     }
   }
 }
+@media (max-width: 1199px) {
+  .input-container {
+    .lupa {
+      left: -260px;
+    }
+  }
+}
+
 @media (max-width: 800px) {
   .input-container {
     button {

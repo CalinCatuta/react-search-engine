@@ -48,3 +48,9 @@
     margin-inline: auto;
   }
 }
+@media (max-width: 800px) {
+  .card {
+    margin-inline: auto;
+    width: 300px;
+  }
+}

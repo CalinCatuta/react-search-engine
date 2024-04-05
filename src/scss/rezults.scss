@@ -70,3 +70,30 @@ body {
 .rezult-page {
   padding: 0rem 10rem;
 }
+@media (max-width: 1400px) {
+  .rezults-container {
+    .cards-containter {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+  }
+  .rezult-page {
+    padding: 0rem 6rem;
+  }
+}
+@media (max-width: 800px) {
+  .rezults-container {
+    .cards-containter {
+      grid-template-columns: 1fr;
+      align-content: center;
+      align-items: center;
+      justify-content: center;
+    }
+    .scrol-up {
+      right: 0px;
+    }
+  }
+  .rezult-page {
+    padding: 0 2rem;
+  }
+}
