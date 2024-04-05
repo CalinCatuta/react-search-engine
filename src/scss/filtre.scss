@@ -65,3 +65,18 @@
     display: block;
   }
 }
+@media (max-width: 450px) {
+  .drop-down-parent {
+    display: grid;
+    grid-template-columns: 120px 120px;
+    grid-gap: 6px;
+    .drop-down-container {
+      left: 60px;
+    }
+  }
+  .search-input {
+    .lupa {
+      height: 18px;
+    }
+  }
+}

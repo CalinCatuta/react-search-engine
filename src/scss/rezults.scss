@@ -83,6 +83,7 @@ body {
 }
 @media (max-width: 800px) {
   .rezults-container {
+    margin-top: 0px;
     .cards-containter {
       grid-template-columns: 1fr;
       align-content: center;
