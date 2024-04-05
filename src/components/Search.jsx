@@ -112,7 +112,6 @@ const Fetch = () => {
         <img className="lupa" src={magnifyGlass} alt="magnify-glass" />
         <form onSubmit={handleUpdateQ}>
           <input
-            autoFocus
             type="text"
             value={text}
             onChange={(e) => setText([e.target.value])}

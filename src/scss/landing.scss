@@ -51,6 +51,13 @@ main {
     display: flex;
     width: 900px;
     margin-inline: auto;
+    .text {
+      .dungi {
+        position: absolute;
+        top: 250px;
+        margin-left: 40px;
+      }
+    }
   }
 }
 @media (max-width: 1200px) {
@@ -74,6 +81,13 @@ main {
       }
     }
   }
+  .content {
+    .text {
+      .dungi {
+        display: none;
+      }
+    }
+  }
 }
 
 @media (max-width: 800px) {
@@ -90,7 +104,18 @@ main {
         z-index: -10;
       }
     }
+    .content {
+      .text {
+        .dungi {
+          display: block;
+          width: 200px;
+          top: 260px;
+          margin-left: 8px;
+        }
+      }
+    }
   }
+
   .landing {
     padding: 0 1.5rem;
   }
