@@ -20,9 +20,9 @@ const FiltreGrup = () => {
 
   // Function to handle dropdown toggle
   function handleDropDown(index) {
-    // Toggling the visibility of dropdown at specified index
+    // Toggle the dropdown at the specified index
     const updatedDropDown = dropDown.map((item, i) =>
-      i === index ? !item : item
+      i === index ? !item : false
     );
     setDropDown(updatedDropDown);
   }
@@ -59,7 +59,6 @@ const FiltreGrup = () => {
                     src={magnifyGlass}
                     alt="magnify-glass"
                   />
-
                   <input
                     type="text"
                     value={text}
@@ -96,6 +95,35 @@ const FiltreGrup = () => {
             )}
             {index === 1 && (
               <React.Fragment>
+                <div className="search-input">
+                  <img
+                    className="lupa"
+                    src={magnifyGlass}
+                    alt="magnify-glass"
+                  />
+
+                  <input
+                    type="text"
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                    placeholder="Cauta firma"
+                  />
+                  {text.length !== 0 ? (
+                    <span className="clear" onClick={handleClearX}>
+                      <svg
+                        focusable="false"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="15px"
+                        height="15px"
+                      >
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+                      </svg>
+                    </span>
+                  ) : (
+                    ""
+                  )}
+                </div>
                 <input
                   type="checkbox"
                   id="AxonSoft"
@@ -115,7 +143,7 @@ const FiltreGrup = () => {
                   id="Remote"
                   name="remote"
                   value="Remote"
-                  className="check-box"
+                  className="check-box mdl"
                   checked={fields.remote.includes("Remote")}
                   onChange={(e) => handleCheckBoxChange(e, "remote")}
                 />
